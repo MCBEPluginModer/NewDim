@@ -34,6 +34,59 @@ class CompoundTag;
 class StructureFeatureRegistry;
 using namespace ll::memory;
 
+#include <memory>
+
+class StructureFeatureRegistry;
+
+class BlockVolumeTarget;
+class Random;
+class BlockSource;
+class IPreliminarySurfaceProvider;
+
+#include <mc/world/level/levelgen/v1/IPreliminarySurfaceProvider.h>
+#include <mc/world/level/levelgen/structure/StructureFeatureType.h>
+#include <mc/world/level/biome/source/BiomeArea.h>
+#include <mc/world/level/levelgen/v1/OverworldGenerator.h>
+#include <mc/world/level/levelgen/v1/NetherGenerator.h>
+#include <mc/world/level/levelgen/v1/TheEndGenerator.h>
+#include <mc/world/level/levelgen/VoidGenerator.h>
+#include <mc/world/level/levelgen/feature/CanyonFeature.h>
+#include <mc/world/level/levelgen/feature/MonsterRoomFeature.h>
+#include <mc/world/level/levelgen/feature/EndIslandFeature.h>
+#include <mc/world/level/biome/surface/PerlinNoise.h>
+#include <mc/world/level/levelgen/synth/SimplexNoise.h>
+#include <mc/world/level/biome/surface/PerlinSimplexNoise.h>
+#include <mc/math/Random.h>
+#include <mc/world/level/biome/VanillaBiomeNames.h>
+#include <mc/deps/core/string/HashedString.h>
+#include <mc/world/level/levelgen/feature/registry/FeatureRegistry.h>
+#include <mc/world/systems/BiomeDecorationSystem.h>
+#include <mc/world/level/block/Block.h>
+#include <mc/deps/core/utility/buffer_span_mut.h>
+
+#include <mc/world/level/levelgen/v1/IPreliminarySurfaceProvider.h>
+#include <mc/world/level/levelgen/structure/StructureFeatureType.h>
+#include <mc/world/level/biome/source/BiomeArea.h>
+#include <mc/world/level/levelgen/v1/OverworldGenerator.h>
+#include <mc/world/level/levelgen/v1/NetherGenerator.h>
+#include <mc/world/level/levelgen/v1/TheEndGenerator.h>
+#include <mc/world/level/levelgen/VoidGenerator.h>
+#include <mc/world/level/levelgen/feature/CanyonFeature.h>
+#include <mc/world/level/levelgen/feature/MonsterRoomFeature.h>
+#include <mc/world/level/levelgen/feature/EndIslandFeature.h>
+#include <mc/world/level/biome/surface/PerlinNoise.h>
+#include <mc/world/level/levelgen/synth/SimplexNoise.h>
+#include <mc/world/level/biome/surface/PerlinSimplexNoise.h>
+#include <mc/math/Random.h>
+#include <mc/world/level/biome/VanillaBiomeNames.h>
+#include <mc/deps/core/string/HashedString.h>
+#include <mc/world/level/levelgen/feature/registry/FeatureRegistry.h>
+#include <mc/world/systems/BiomeDecorationSystem.h>
+#include <mc/world/level/block/Block.h>
+#include <mc/deps/core/utility/buffer_span_mut.h>
+
+Logger logger("testplugin");
+
 class TestDimension : public MoreDimension 
 {
 public:
