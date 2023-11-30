@@ -85,7 +85,7 @@ class IPreliminarySurfaceProvider;
 #include <mc/world/level/block/Block.h>
 #include <mc/deps/core/utility/buffer_span_mut.h>
 
-Logger logger("testplugin");
+ll::Logger logger("testplugin");
 
 class TestDimension : public MoreDimension 
 {
@@ -146,11 +146,11 @@ public:
 
     bool hasPrecipitationFog() const override { return true; };
 
-    static std::unique_ptr<StructureFeatureRegistry>
+    /*static std::unique_ptr<StructureFeatureRegistry>
     makeStructureFeatures(uint a1, bool a2, BaseGameVersion const& a3, Experiments const& a4) {
         logger.info("TestDimension::makeStructureFeatures");
         return ((MoreDimension*)this)->makeStructureFeatures(a1, a2, a3, a4);
-    };
+    };*/
 };
 
 
