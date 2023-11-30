@@ -149,7 +149,7 @@ public:
     static std::unique_ptr<StructureFeatureRegistry>
     makeStructureFeatures(uint a1, bool a2, BaseGameVersion const& a3, Experiments const& a4) {
         logger.info("TestDimension::makeStructureFeatures");
-        return MoreDimension::makeStructureFeatures(a1, a2, a3, a4);
+        return ((MoreDimension*)this)->makeStructureFeatures(a1, a2, a3, a4);
     };
 };
 
