@@ -4,11 +4,14 @@
 
 #include <ll/api/Logger.h>
 #include <ll/api/plugin/Plugin.h>
+#include <ll/api/dimension/MoreDimension.h>
+#include <ll/api/dimension/MoreDimensionManager.h>
 
 namespace plugins {
 
 class Plugin {
 public:
+    MoreDimensionManager manager;
     Plugin() = default;
 
     ~Plugin() = default;
