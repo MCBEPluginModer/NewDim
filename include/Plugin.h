@@ -28,10 +28,10 @@
 
 class TestDimension : public MoreDimension 
 {
-ll::Logger log("tests");
 public:
+ll::Logger log("tests");
     TestDimension(ILevel& ilevel, Scheduler& scheduler,MoreDimensionManager::DimensionInfo& dimensionInfo)
-    : Dimension(
+    : MoreDimension(
         ilevel,
         scheduler,
         dimensionInfo
@@ -42,6 +42,10 @@ public:
         mHasWeather              = true;
         mDimensionBrightnessRamp = std::make_unique<OverworldBrightnessRamp>();
         mDimensionBrightnessRamp->buildBrightnessRamp();
+        dimensionInfo.name = "test";
+        dimensionInfo.id = 3;
+        dimensionInfo.seed = 34328643;
+        dimensionInfo.generatorType = 0x6;
     }
     void init() final {
         log.info("TestDimension::init");
