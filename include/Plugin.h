@@ -26,6 +26,103 @@
 #include <mc/world/level/levelgen/structure/StructureFeatureRegistry.h>
 #include <mc/world/level/storage/LevelData.h>
 
+class TestDimension : public MoreDimension 
+{
+ll::Logger log("tests");
+public:
+    TestDimension(ILevel& ilevel, Scheduler& scheduler,MoreDimensionManager::DimensionInfo& dimensionInfo)
+    : Dimension(
+        ilevel,
+        scheduler,
+        dimensionInfo
+    ) {
+    logger.info("TestDimension::TestDimension");
+        mDefaultBrightness.sky   = Brightness::MAX;
+        mSeaLevel                = 1;
+        mHasWeather              = true;
+        mDimensionBrightnessRamp = std::make_unique<OverworldBrightnessRamp>();
+        mDimensionBrightnessRamp->buildBrightnessRamp();
+    }
+    void init() final {
+        log.info("TestDimension::init");
+        setSkylight(false);
+        Dimension::init();
+    }
+    std::unique_ptr<WorldGenerator> createGenerator() final {
+        log.info("TestDimension::createGenerator");
+      //  auto& level     = getLevel();
+       // auto& levelData = level.getLevelData();
+       // level.getBiomeRegistry().lookupByName(levelData.getBiomeOverride());
+       // auto& layer = levelData.getFlatWorldGeneratorOptions();
+
+        return std::make_unique<SimpleGenerator>(*this);
+    }
+
+    void upgradeLevelChunk(ChunkSource& cs, LevelChunk& lc, LevelChunk& generatedChunk) final {
+        log.info("TestDimension::upgradeLevelChunk");
+        BlockSource blockSource = BlockSource(getLevel(), *this, cs, false, true, false);
+        VanillaLevelChunkUpgrade::_upgradeLevelChunkViaMetaData(lc, generatedChunk, blockSource);
+        VanillaLevelChunkUpgrade::_upgradeLevelChunkLegacy(lc, blockSource);
+    }
+
+    void fixWallChunk(ChunkSource& cs, LevelChunk& lc) final {
+        log.info("TestDimension::fixWallChunk");
+        BlockSource blockSource = BlockSource(getLevel(), *this, cs, false, true, false);
+        VanillaLevelChunkUpgrade::fixWallChunk(lc, blockSource);
+    }
+
+    bool levelChunkNeedsUpgrade(LevelChunk const& lc) const final {
+        log.info("TestDimension::levelChunkNeedsUpgrade");
+        return VanillaLevelChunkUpgrade::levelChunkNeedsUpgrade(lc);
+    }
+    void _upgradeOldLimboEntity(CompoundTag& tag, ::LimboEntitiesVersion vers) final {
+        log.info("TestDimension::_upgradeOldLimboEntity");
+        auto isTemplate = this->getLevel().getLevelData().isFromWorldTemplate();
+        return VanillaLevelChunkUpgrade::upgradeOldLimboEntity(tag, vers, isTemplate);
+    }
+
+    Vec3 translatePosAcrossDimension(Vec3 const& pos, DimensionType did) const final {
+        log.info("TestDimension::translatePosAcrossDimension");
+        auto data  = getLevel().getDimensionConversionData();
+        auto testd = CustomizeDimension::TestDimension.id;
+        auto topos = Vec3();
+        VanillaDimensions::convertPointBetweenDimensions(pos, topos, did, testd, data);
+        if (topos.x >= 31999872) topos.x = 31999872;
+        if (topos.x <= -31999872) topos.x = -31999872;
+        if (topos.z >= 31999872) topos.z = 31999872;
+        if (topos.z <= -31999872) topos.z = -31999872;
+        return topos;
+    }
+
+    std::unique_ptr<ChunkSource>
+    _wrapStorageForVersionCompatibility(std::unique_ptr<ChunkSource> cs, ::StorageVersion ver) override {
+        log.info("TestDimension::_wrapStorageForVersionCompatibility");
+        return cs;
+    }
+
+    mce::Color getBrightnessDependentFogColor(mce::Color const& color, float brightness) const override {
+        log.info("TestDimension::getBrightnessDependentFogColor");
+        float temp   = (brightness * 0.94f) + 0.06f;
+        float temp2  = (brightness * 0.91f) + 0.09f;
+        auto  result = color;
+        result.r     = color.r * temp;
+        result.g     = color.g * temp;
+        result.b     = color.b * temp2;
+        return result;
+    };
+
+    short getCloudHeight() const override { return 192; };
+
+    bool hasPrecipitationFog() const override { return true; };
+
+    static std::unique_ptr<StructureFeatureRegistry>
+    makeStructureFeatures(uint a1, bool a2, BaseGameVersion const& a3, Experiments const& a4) {
+        log.info("TestDimension::makeStructureFeatures");
+        return {};
+    };
+};
+
+
 namespace plugins {
 
 class Plugin {
