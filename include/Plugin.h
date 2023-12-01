@@ -26,7 +26,7 @@
 #include <mc/world/level/levelgen/structure/StructureFeatureRegistry.h>
 #include <mc/world/level/storage/LevelData.h>
 
-ll::Logger logg("tests");
+ll::Logger loggg("tests");
 
 class TestDimension : public MoreDimension 
 {
@@ -37,7 +37,7 @@ public:
         scheduler,
         dimensionInfo
     ) {
-    logg.info("TestDimension::TestDimension");
+    loggg.info("TestDimension::TestDimension");
         mDefaultBrightness.sky   = Brightness::MAX;
         mSeaLevel                = 1;
         mHasWeather              = true;
@@ -49,12 +49,12 @@ public:
         dimensionInfo.generatorType = (enum GeneratorType)0x6;
     }
     void init() final {
-        logg.info("TestDimension::init");
+        loggg.info("TestDimension::init");
         setSkylight(false);
         Dimension::init();
     }
     std::unique_ptr<WorldGenerator> createGenerator() final {
-        logg.info("TestDimension::createGenerator");
+        loggg.info("TestDimension::createGenerator");
       //  auto& level     = getLevel();
        // auto& levelData = level.getLevelData();
        // level.getBiomeRegistry().lookupByName(levelData.getBiomeOverride());
@@ -64,24 +64,24 @@ public:
     }
 
     void upgradeLevelChunk(ChunkSource& cs, LevelChunk& lc, LevelChunk& generatedChunk) final {
-        logg.info("TestDimension::upgradeLevelChunk");
+        loggg.info("TestDimension::upgradeLevelChunk");
         BlockSource blockSource = BlockSource(getLevel(), *this, cs, false, true, false);
         VanillaLevelChunkUpgrade::_upgradeLevelChunkViaMetaData(lc, generatedChunk, blockSource);
         VanillaLevelChunkUpgrade::_upgradeLevelChunkLegacy(lc, blockSource);
     }
 
     void fixWallChunk(ChunkSource& cs, LevelChunk& lc) final {
-        logg.info("TestDimension::fixWallChunk");
+        loggg.info("TestDimension::fixWallChunk");
         BlockSource blockSource = BlockSource(getLevel(), *this, cs, false, true, false);
         VanillaLevelChunkUpgrade::fixWallChunk(lc, blockSource);
     }
 
     bool levelChunkNeedsUpgrade(LevelChunk const& lc) const final {
-        logg.info("TestDimension::levelChunkNeedsUpgrade");
+        loggg.info("TestDimension::levelChunkNeedsUpgrade");
         return VanillaLevelChunkUpgrade::levelChunkNeedsUpgrade(lc);
     }
     void _upgradeOldLimboEntity(CompoundTag& tag, ::LimboEntitiesVersion vers) final {
-        logg.info("TestDimension::_upgradeOldLimboEntity");
+        loggg.info("TestDimension::_upgradeOldLimboEntity");
         auto isTemplate = this->getLevel().getLevelData().isFromWorldTemplate();
         return VanillaLevelChunkUpgrade::upgradeOldLimboEntity(tag, vers, isTemplate);
     }
@@ -93,12 +93,12 @@ public:
 
     std::unique_ptr<ChunkSource>
     _wrapStorageForVersionCompatibility(std::unique_ptr<ChunkSource> cs, ::StorageVersion ver) override {
-        logg.info("TestDimension::_wrapStorageForVersionCompatibility");
+        loggg.info("TestDimension::_wrapStorageForVersionCompatibility");
         return cs;
     }
 
     mce::Color getBrightnessDependentFogColor(mce::Color const& color, float brightness) const override {
-        logg.info("TestDimension::getBrightnessDependentFogColor");
+        loggg.info("TestDimension::getBrightnessDependentFogColor");
         float temp   = (brightness * 0.94f) + 0.06f;
         float temp2  = (brightness * 0.91f) + 0.09f;
         auto  result = color;
@@ -114,7 +114,7 @@ public:
 
     static std::unique_ptr<StructureFeatureRegistry>
     makeStructureFeatures(uint a1, bool a2, BaseGameVersion const& a3, Experiments const& a4) {
-        logg.info("TestDimension::makeStructureFeatures");
+        loggg.info("TestDimension::makeStructureFeatures");
         return {};
     };
 };
