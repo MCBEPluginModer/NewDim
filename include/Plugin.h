@@ -30,7 +30,7 @@ namespace plugins {
 
 class Plugin {
 public:
-    MoreDimensionManager manager;
+    MoreDimensionManager* manager;
     Plugin() = default;
 
     ~Plugin() = default;
