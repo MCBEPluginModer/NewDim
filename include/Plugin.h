@@ -26,10 +26,11 @@
 #include <mc/world/level/levelgen/structure/StructureFeatureRegistry.h>
 #include <mc/world/level/storage/LevelData.h>
 
+ll::Logger log("tests");
+
 class TestDimension : public MoreDimension 
 {
 public:
-ll::Logger log("tests");
     TestDimension(ILevel& ilevel, Scheduler& scheduler,MoreDimensionManager::DimensionInfo& dimensionInfo)
     : MoreDimension(
         ilevel,
@@ -45,7 +46,7 @@ ll::Logger log("tests");
         dimensionInfo.name = "test";
         dimensionInfo.id = 3;
         dimensionInfo.seed = 34328643;
-        dimensionInfo.generatorType = 0x6;
+        dimensionInfo.generatorType = (enum GeneratorType)0x6;
     }
     void init() final {
         log.info("TestDimension::init");
@@ -85,18 +86,10 @@ ll::Logger log("tests");
         return VanillaLevelChunkUpgrade::upgradeOldLimboEntity(tag, vers, isTemplate);
     }
 
-    Vec3 translatePosAcrossDimension(Vec3 const& pos, DimensionType did) const final {
+    /*Vec3 translatePosAcrossDimension(Vec3 const& pos, DimensionType did) const final {
         log.info("TestDimension::translatePosAcrossDimension");
-        auto data  = getLevel().getDimensionConversionData();
-        auto testd = CustomizeDimension::TestDimension.id;
-        auto topos = Vec3();
-        VanillaDimensions::convertPointBetweenDimensions(pos, topos, did, testd, data);
-        if (topos.x >= 31999872) topos.x = 31999872;
-        if (topos.x <= -31999872) topos.x = -31999872;
-        if (topos.z >= 31999872) topos.z = 31999872;
-        if (topos.z <= -31999872) topos.z = -31999872;
-        return topos;
-    }
+        return (MoreDimen;
+    }*/
 
     std::unique_ptr<ChunkSource>
     _wrapStorageForVersionCompatibility(std::unique_ptr<ChunkSource> cs, ::StorageVersion ver) override {
