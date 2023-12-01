@@ -2,7 +2,8 @@
 
 #include <stdexcept>
 #include <string_view>
-
+#include <ll/api/dimension/MoreDimension.h>
+#include <ll/api/dimension/MoreDimensionManager.h>
 #include <ll/api/plugin/Plugin.h>
 
 namespace plugins {
