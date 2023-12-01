@@ -85,7 +85,7 @@ class IPreliminarySurfaceProvider;
 #include <mc/world/level/block/Block.h>
 #include <mc/deps/core/utility/buffer_span_mut.h>
 
-ll::Logger logger("testplugin");
+ll::Logger logger1("testplugin");
 
 class TestDimension : public MoreDimension 
 {
@@ -96,49 +96,49 @@ public:
         scheduler,
         dimensionInfo
     ) {
-        logger.info("TestDimension::TestDimension");
+        logger1.info("TestDimension::TestDimension");
     }
     void init() final {
-        logger.info("TestDimension::init");
+        logger1.info("TestDimension::init");
         ((MoreDimension*)this)->init();
     }
     std::unique_ptr<WorldGenerator> createGenerator() final {
-        logger.info("TestDimension::createGenerator");
+        logger1.info("TestDimension::createGenerator");
         return ((MoreDimension*)this)->createGenerator();
     }
 
     void upgradeLevelChunk(ChunkSource& cs, LevelChunk& lc, LevelChunk& generatedChunk) final {
-        logger.info("TestDimension::upgradeLevelChunk");
+        logger1.info("TestDimension::upgradeLevelChunk");
         ((MoreDimension*)this)->upgradeLevelChunk(cs, lc, generatedChunk);
     }
 
     void fixWallChunk(ChunkSource& cs, LevelChunk& lc) final {
-        logger.info("TestDimension::fixWallChunk");
+        logger1.info("TestDimension::fixWallChunk");
         ((MoreDimension*)this)->fixWallChunk(cs, lc);
     }
 
     bool levelChunkNeedsUpgrade(LevelChunk const& lc) const final {
-        logger.info("TestDimension::levelChunkNeedsUpgrade");
+        logger1.info("TestDimension::levelChunkNeedsUpgrade");
         return ((MoreDimension*)this)->levelChunkNeedsUpgrade(lc);
     }
     void _upgradeOldLimboEntity(CompoundTag& tag, ::LimboEntitiesVersion vers) final {
-        logger.info("TestDimension::_upgradeOldLimboEntity");
+        logger1.info("TestDimension::_upgradeOldLimboEntity");
         return ((MoreDimension*)this)->_upgradeOldLimboEntity(tag, vers);
     }
 
     Vec3 translatePosAcrossDimension(Vec3 const& pos, DimensionType did) const final {
-        logger.info("TestDimension::translatePosAcrossDimension");
+        logger1.info("TestDimension::translatePosAcrossDimension");
         return ((MoreDimension*)this)->translatePosAcrossDimension(pos, did);
     }
 
     std::unique_ptr<ChunkSource>
     _wrapStorageForVersionCompatibility(std::unique_ptr<ChunkSource> cs, ::StorageVersion ver) override {
-        logger.info("TestDimension::_wrapStorageForVersionCompatibility");
+        logger1.info("TestDimension::_wrapStorageForVersionCompatibility");
         return cs;
     }
 
     mce::Color getBrightnessDependentFogColor(mce::Color const& color, float brightness) const override {
-        logger.info("TestDimension::getBrightnessDependentFogColor");
+        logger1.info("TestDimension::getBrightnessDependentFogColor");
         return ((MoreDimension*)this)->getBrightnessDependentFogColor(color, brightness);
     };
 
