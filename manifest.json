@@ -1,4 +1,4 @@
 {
-    "name": "${pluginName}",
-    "entry": "${pluginFile}"
+    "name": "testdim",
+    "entry": "dllentry"
 }
