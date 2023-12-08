@@ -42,7 +42,8 @@ public:
         mHasWeather              = true;
         mDimensionBrightnessRamp = std::make_unique<OverworldBrightnessRamp>();
         mDimensionBrightnessRamp->buildBrightnessRamp();
-        dimensionInfo.name = "test";
+        std::string name = "test";
+        dimensionInfo.name = name;
         dimensionInfo.id = 3;
         dimensionInfo.seed = 34328643;
         dimensionInfo.generatorType = (enum GeneratorType)0x6;
