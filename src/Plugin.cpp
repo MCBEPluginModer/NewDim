@@ -12,7 +12,7 @@ bool Plugin::load(ll::plugin::Plugin& self) {
     if (this->mSelf != nullptr) {
         throw std::runtime_error("plugin is loaded twice");
     }
-    MoreDimensionManager::getInstance().AddDimension("test",3434,3);
+    MoreDimensionManager::getInstance().AddDimension("test",3434,GeneratorType::Void);
     this->mSelf = &self;
 
     // Code for loading the plugin goes here.
