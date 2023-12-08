@@ -26,7 +26,7 @@
 #include <mc/world/level/levelgen/structure/StructureFeatureRegistry.h>
 #include <mc/world/level/storage/LevelData.h>
 
-class TestDimension : public MoreDimension 
+/*class TestDimension : public MoreDimension 
 {
 public:
     TestDimension(ILevel& ilevel, Scheduler& scheduler,MoreDimensionManager::DimensionInfo& dimensionInfo)
@@ -92,11 +92,6 @@ public:
         return VanillaLevelChunkUpgrade::upgradeOldLimboEntity(tag, vers, isTemplate);
     }
 
-    /*Vec3 translatePosAcrossDimension(Vec3 const& pos, DimensionType did) const final {
-        log.info("TestDimension::translatePosAcrossDimension");
-        return (MoreDimen;
-    }*/
-
     std::unique_ptr<ChunkSource>
     _wrapStorageForVersionCompatibility(std::unique_ptr<ChunkSource> cs, ::StorageVersion ver) override {
         ll::Logger loggg("tests");
@@ -126,7 +121,7 @@ public:
         loggg.info("TestDimension::makeStructureFeatures");
         return {};
     };
-};
+};*/
 
 
 namespace plugins {
