@@ -1,5 +1,5 @@
 add_repositories("liteldev-repo https://github.com/LiteLDev/xmake-repo.git")
-add_requires("levilamina", { git = "https://github.com/LiteLDev/LeviLamina.git", branch = "feature/customdim" })
+add_requires("levilamina feature/customdim", { git = "https://github.com/LiteLDev/LeviLamina.git", branch = "feature/customdim" })
 
 package("levilamina")
     add_urls("https://github.com/LiteLDev/LeviLamina.git")
