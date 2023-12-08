@@ -2,7 +2,7 @@ add_repositories("liteldev-repo https://github.com/LiteLDev/xmake-repo.git")
 add_requires("levilamina feature/customdim")
 
 package("levilamina")
-    add_urls("https://github.com/MCBEPluginModer/LeviLamina.git")
+    add_urls("https://github.com/LiteLDev/LeviLamina.git")
 
     -- Dependencies from xmake-repo.
     add_deps("entt 3.12.2")
