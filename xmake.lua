@@ -35,7 +35,7 @@ target("lnewdim") -- Change this to your plugin name.
     set_kind("shared")
     set_languages("cxx20")
     set_plat("windows")
-    set_symbols("release")
+    set_symbols("debug")
     set_toolchains("msvc")
 
     after_build(function (target)
