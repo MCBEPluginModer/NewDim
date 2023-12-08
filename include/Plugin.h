@@ -33,10 +33,11 @@ public:
     : MoreDimension(
         ilevel,
         scheduler,
-        MoreDimensionManager::DimensionInfo("test",3,12345)
+       dimensionInfo
     ) {
         ll::Logger loggg("tests");
     loggg.info("TestDimension::TestDimension");
+        dimensionInfo = MoreDimensionManager::DimensionInfo("test",3,12345);
         mDefaultBrightness.sky   = Brightness::MAX;
         mSeaLevel                = 1;
         mHasWeather              = true;
