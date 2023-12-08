@@ -128,7 +128,6 @@ namespace plugins {
 
 class Plugin {
 public:
-    MoreDimensionManager manager = MoreDimensionManager::getInstance();
     Plugin() = default;
 
     ~Plugin() = default;
