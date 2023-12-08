@@ -46,7 +46,7 @@ public:
        // dimensionInfo.name = name;
         //dimensionInfo.id = 3;
        // dimensionInfo.seed = 34328643;
-        dimensionInfo.generatorType = (enum GeneratorType)0x6;
+        //dimensionInfo.generatorType = (enum GeneratorType)0x6;
     }
     void init() final {
         ll::Logger loggg("tests");
