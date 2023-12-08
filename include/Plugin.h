@@ -62,7 +62,7 @@ public:
        // level.getBiomeRegistry().lookupByName(levelData.getBiomeOverride());
        // auto& layer = levelData.getFlatWorldGeneratorOptions();
 
-        return std::make_unique<SimpleGenerator>(*this);
+        return std::make_unique<VoidGenerator>(*this);
     }
 
     void upgradeLevelChunk(ChunkSource& cs, LevelChunk& lc, LevelChunk& generatedChunk) final {
