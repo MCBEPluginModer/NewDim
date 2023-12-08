@@ -33,7 +33,7 @@ public:
     : MoreDimension(
         ilevel,
         scheduler,
-        dimensionInfo
+        MoreDimensionManager::DimensionInfo("test",3,12345)
     ) {
         ll::Logger loggg("tests");
     loggg.info("TestDimension::TestDimension");
