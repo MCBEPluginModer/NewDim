@@ -1,6 +1,8 @@
 #pragma once
 #include <ll/api/dimension/MoreDimension.h>
 #include <ll/api/dimension/MoreDimensionManager.h>
+#include <ll/api/dimension/FakeDimensionId.h>
+#include <ll/api/dimension/MoreDimensionConfig.h>
 #include <string_view>
 
 #include <ll/api/Logger.h>
