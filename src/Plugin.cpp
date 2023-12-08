@@ -1,3 +1,7 @@
+#include <ll/api/dimension/MoreDimension.h>
+#include <ll/api/dimension/MoreDimensionManager.h>
+#include <ll/api/dimension/FakeDimensionId.h>
+#include <ll/api/dimension/MoreDimensionConfig.h>
 #include <Plugin.h>
 
 #include <stdexcept>
