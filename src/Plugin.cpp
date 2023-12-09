@@ -46,7 +46,8 @@ bool Plugin::enable(ll::plugin::Plugin& self) {
     }
 
     // Code for enabling the plugin goes here.
-    MoreDimensionManager::getInstance().AddDimension("test",3434,GeneratorType::Void);
+    auto manager = MoreDimensionManager::getInstance();
+   // MoreDimensionManager::getInstance().AddDimension("test",3434,GeneratorType::Void);
     this->mIsEnabled = true;
     return true;
 }
