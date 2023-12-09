@@ -30,7 +30,7 @@ package("levilamina")
         import("package.tools.xmake").install(package)
     end)
 
-target("levilamina-plugin-template") -- Change this to your plugin name.
+target("lnewdim") -- Change this to your plugin name.
     add_cxflags(
         "/utf-8",
         "/permissive-",
