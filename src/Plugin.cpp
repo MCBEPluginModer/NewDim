@@ -47,7 +47,10 @@ bool Plugin::enable(ll::plugin::Plugin& self) {
 
     // Code for enabling the plugin goes here.
     //auto manager = MoreDimensionManager::getInstance();
-    MoreDimensionManager::getInstance().AddDimension("test",3434,GeneratorType::Void);
+    std::string_view view = "test"; // Пример строки в формате std::string_view
+    AutomaticID<Dimension, int> id = 3; // Пример AutomaticID
+    MoreDimensionManager::DimensionInfo f(view,id,12345);
+    MoreDimensionManager::getInstance().AddDimension(f);
     this->mIsEnabled = true;
     return true;
 }
